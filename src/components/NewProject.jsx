@@ -1,12 +1,13 @@
 import React, { useRef } from "react";
 import Input from "./Input";
+import Modal from "./Modal";
 
 const NewProject = ({ onAdd }) => {
+  const modal = useRef();
+
   const title = useRef();
   const description = useRef();
   const dueDate = useRef();
-
-  
 
   const handleSave = (event) => {
     event.preventDefault();
@@ -14,6 +15,14 @@ const NewProject = ({ onAdd }) => {
     const enteredDescription = description.current.value;
     const eneteredDueDate = dueDate.current.value;
 
+    if (
+      enteredTitle.trim() === "" ||
+      enteredDescription.trim() === "" ||
+      eneteredDueDate.trim() === ""
+    ) {
+        modal.current.open();
+        return;
+    }
     onAdd({
       title: enteredTitle,
       description: enteredDescription,
@@ -21,8 +30,12 @@ const NewProject = ({ onAdd }) => {
     });
   };
 
-
   return (
+    <>
+    <Modal ref={modal}>
+        <h2>Invalid Input</h2>
+        <p>You have not entered value on all the input fields.</p>
+    </Modal>
     <div className="w-[35rem] mt-16">
       <menu className="flex items-center justify-end gap-4 my-4">
         <button className="text-stone-800 hover:text-stone-950 ">Cancel</button>
@@ -39,6 +52,7 @@ const NewProject = ({ onAdd }) => {
         <Input type="date" ref={dueDate} label="Due date" />
       </div>
     </div>
+    </>
   );
 };
 
