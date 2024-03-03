@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import "./App.css";
 import NewProject from "./components/NewProject";
 import NoNewProject from "./components/NoNewProject";
 import ProjectsSideBar from "./components/ProjectsSideBar";
 import SelectedProject from "./components/SelectedProject";
 
+
 function App() {
+  useLayoutEffect(()=>{
+    document.body.style.backgroundColor="#C6DCBA";
+  })
   const [projectState, setProjectState] = useState({
     selectedProjectId: undefined,
     project: [],
@@ -22,12 +26,18 @@ function App() {
       };
       return {
         ...prevState,
-        task:[newTask, ...prevState.tasks]
+        tasks:[newTask, ...prevState.tasks]
       };
     });
   };
-  function handleDeleteTasks() {
-
+  function handleDeleteTasks(id) {
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        tasks: prevState.tasks.filter(
+          (task) => task.id !== id),
+      };
+    });
   };
   const handlerSelectedProject = (id) => {
     setProjectState((prevState) => {
