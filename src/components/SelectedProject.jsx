@@ -1,6 +1,6 @@
 import React from "react";
 import Tasks from "./Tasks";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import icon from '../assets/Delete.png';
 
 
 const SelectedProject = ({project,onDelete,onAddTask, onDeleteTasks,tasks }) => {
@@ -11,11 +11,10 @@ const SelectedProject = ({project,onDelete,onAddTask, onDeleteTasks,tasks }) => 
   });
   return (
     <div className="w-[35rem] mt-16 ">
-      <FontAwesomeIcon icon="fa-solid fa-trash" />
       <header className="pb-4 mb-4 border-b-2 border-stone-800">
         <div className="flex items-center justify-between">
           <h1 className="text-4xl font-bold text-stone-600 mb-2">{project.title}</h1>
-          <button className="text-stone-600 hover:text-stone-950 " onClick={onDelete}>Delete</button>
+          <button className="text-stone-600 hover:text-stone-950 " onClick={onDelete}><img src={icon} alt="delete"/></button>
           
         </div>
         <p className="mb-4 text-stone-500  ">{formattedDate}</p>

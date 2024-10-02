@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 
 const classes =
-  "w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600";
+  "w-full p-1 border-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600 rounded-lg ";
 
 const Input = forwardRef(function Input({ label, textarea, ...props }, ref) {
   return (
